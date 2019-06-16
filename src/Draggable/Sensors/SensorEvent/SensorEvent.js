@@ -1,4 +1,5 @@
 import AbstractEvent from 'shared/AbstractEvent';
+import {getRealTarget} from 'shared/utils';
 
 /**
  * Base sensor event
@@ -39,13 +40,13 @@ export class SensorEvent extends AbstractEvent {
 
   /**
    * Normalized target for both touch and mouse events
-   * Returns the element that is behind cursor or touch pointer
+   * Returns the element that is behind cursor or touch pointer, taking shadowDOMs into account
    * @property target
    * @type {HTMLElement}
    * @readonly
    */
   get target() {
-    return this.data.target;
+    return getRealTarget(this.data);
   }
 
   /**
